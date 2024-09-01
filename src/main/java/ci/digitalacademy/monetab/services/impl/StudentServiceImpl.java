@@ -19,35 +19,36 @@ import java.util.Optional;
 public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
+    private  final StudentMapper studentMapper;
 
 
     @Override
     public StudentDTO save(StudentDTO studentDTO) {
         log.debug("Resqurst to save : {}",studentDTO);
-        Student student = StudentMapper.toEntity(studentDTO);
+        Student student = studentMapper.toEntity(studentDTO);
         student= studentRepository.save(student);
 
-        return  StudentMapper.toDto(student);
+        return  studentMapper.toDto(student);
     }
 
     @Override
     public StudentDTO update(StudentDTO studentDTO) {
-        Student student = StudentMapper.toEntity(studentDTO);
+        Student student = studentMapper.toEntity(studentDTO);
         student = studentRepository.save(student);
-       return StudentMapper.toDto(student);
+        return studentMapper.toDto(student);
     }
 
     @Override
     public Optional<StudentDTO> findOne(Long id) {
         return studentRepository.findById(id).map(student -> {
-            return StudentMapper.toDto(student);
+            return studentMapper.toDto(student);
         });
     }
 
     @Override
     public List<StudentDTO> findAll() {
         return studentRepository.findAll().stream().map(student -> {
-            return StudentMapper.toDto(student);
+            return studentMapper.toDto(student);
         }).toList();
     }
 
@@ -55,6 +56,5 @@ public class StudentServiceImpl implements StudentService {
     public void delecte(Long id) {
 
         studentRepository.deleteById(id);
-
     }
 }

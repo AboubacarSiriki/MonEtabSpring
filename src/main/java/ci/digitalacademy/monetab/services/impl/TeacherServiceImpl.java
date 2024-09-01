@@ -1,11 +1,9 @@
 package ci.digitalacademy.monetab.services.impl;
 
-import ci.digitalacademy.monetab.models.Student;
 import ci.digitalacademy.monetab.models.Teacher;
 import ci.digitalacademy.monetab.repositories.TeacherRepository;
 import ci.digitalacademy.monetab.services.TeacherService;
 import ci.digitalacademy.monetab.services.dto.TeacherDTO;
-import ci.digitalacademy.monetab.services.mapper.StudentMapper;
 import ci.digitalacademy.monetab.services.mapper.TeacherMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
