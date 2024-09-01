@@ -11,4 +11,5 @@ public class TeacherDTO extends PersonnDTO {
 
     private Boolean vacant;
 
+    private  TeacherDTO teacherDTO;
 }

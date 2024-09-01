@@ -20,6 +20,10 @@ public class Teacher extends Person {
     private Boolean vacant;
 
 
+    @OneToOne
+    private Person person;
+
+
 //    @OneToMany
 //    private Set<FicheNote> ficheNote;
 

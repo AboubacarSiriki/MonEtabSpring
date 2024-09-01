@@ -1,9 +1,8 @@
 package ci.digitalacademy.monetab.services.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import ci.digitalacademy.monetab.models.Student;
+import ci.digitalacademy.monetab.models.Teacher;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,4 +24,8 @@ public class PersonnDTO {
     private String email;
 
     private String genre;
+
+    private StudentDTO studentDTO;
+
+    private TeacherDTO teacherDTO;
 }

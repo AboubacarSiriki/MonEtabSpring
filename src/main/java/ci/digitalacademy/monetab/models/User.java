@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.Instant;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -26,18 +27,14 @@ public class User {
     @Column(name = "create_date",nullable = false)
     private Instant creationdate;
 
-    @OneToOne
-    @JoinColumn(name = "adresseId")
-    private Address adresse;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy ="user")
+    private Set<RoleUser> roleUsers;
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", speudo='" + speudo + '\'' +
-                ", password='" + password + '\'' +
-                ", creationdate=" + creationdate +
-                ", adresse=" + adresse.getCountry() +
-                '}';
-    }
+    @OneToMany(fetch = FetchType.EAGER, mappedBy ="user")
+    private Set<Address> addresses;
+
+    @ManyToOne(fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
+    @JoinColumn(name ="school_id")
+    private School school;
+
 }

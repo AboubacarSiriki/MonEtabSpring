@@ -7,6 +7,7 @@ import lombok.*;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -30,6 +31,15 @@ public class Student extends Person {
 
     @Column(name = "age")
     private Integer age;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy ="student")
+    private Set<Absence> absences;
+
+    @OneToOne
+    private StudentCards studentCards;
+
+    @OneToOne
+    private Person person;
 
     public LocalDate getDatenaiss() {
         return datenaiss;

@@ -40,4 +40,10 @@ public abstract class Person {
 
     @Column(name = "genre",nullable = false)
     private String genre;
+
+    @OneToOne(mappedBy = "person")
+    private Student student;
+
+    @OneToOne(mappedBy = "person")
+    private Teacher teacher;
 }
