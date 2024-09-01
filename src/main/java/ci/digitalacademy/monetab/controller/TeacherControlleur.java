@@ -70,6 +70,4 @@ public class TeacherControlleur {
         return "redirect:/Teachers";
     }
 
-
-
 }

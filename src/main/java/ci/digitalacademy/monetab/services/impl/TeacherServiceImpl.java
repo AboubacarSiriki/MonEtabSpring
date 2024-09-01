@@ -19,34 +19,36 @@ public class TeacherServiceImpl implements TeacherService {
 
     private final TeacherRepository teacherRepository;
 
+    private final TeacherMapper teacherMapper;
+
 
     @Override
     public TeacherDTO save(TeacherDTO teacherDTO) {
         log.debug("Resquest to save : {}",teacherDTO);
-        Teacher teacher = TeacherMapper.toEntity(teacherDTO);
+        Teacher teacher = teacherMapper.toEntity(teacherDTO);
         teacher= teacherRepository.save(teacher);
 
-        return  TeacherMapper.toDto(teacher);
+        return  teacherMapper.toDto(teacher);
     }
 
     @Override
     public TeacherDTO update(TeacherDTO teacherDTO) {
-        Teacher teacher = TeacherMapper.toEntity(teacherDTO);
+        Teacher teacher = teacherMapper.toEntity(teacherDTO);
         teacher = teacherRepository.save(teacher);
-        return TeacherMapper.toDto(teacher);
+        return teacherMapper.toDto(teacher);
     }
 
     @Override
     public Optional<TeacherDTO> findOne(Long id) {
         return teacherRepository.findById(id).map(teacher -> {
-            return TeacherMapper.toDto(teacher);
+            return teacherMapper.toDto(teacher);
         });
     }
 
     @Override
     public List<TeacherDTO> findAll() {
         return teacherRepository.findAll().stream().map(teacher -> {
-            return TeacherMapper.toDto(teacher);
+            return teacherMapper.toDto(teacher);
         }).toList();
     }
 
