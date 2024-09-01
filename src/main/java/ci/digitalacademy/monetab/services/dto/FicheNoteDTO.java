@@ -1,6 +1,10 @@
 package ci.digitalacademy.monetab.services.dto;
 
 
+import ci.digitalacademy.monetab.models.Teacher;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,4 +20,5 @@ public class FicheNoteDTO {
 
     private Instant annee;
 
+    private TeacherDTO teacherDTO;
 }

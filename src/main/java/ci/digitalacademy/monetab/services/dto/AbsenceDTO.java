@@ -16,5 +16,5 @@ public class AbsenceDTO {
 
     private int absence_number;
 
-    private Student student;
+    private StudentDTO studentDTO;
 }
