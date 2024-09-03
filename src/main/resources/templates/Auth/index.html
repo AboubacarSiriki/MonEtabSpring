@@ -9,10 +9,10 @@
 
 <body style="background-color: #555;">
     <div class="container">
-        <div class="login-box">
-            <div class="logo">
-                <img src="image/logo.jpg" alt="Logo" />
-                <h1>Mon Etab</h1>
+        <div class="login-box" >
+            <div class="logo" th:each="school:${schools}">
+                <img th:src="${school.url_logo}" th:if="${schools != null}" alt="Logo" />
+                <h1 th:text="${school.getName}">Mon Etab</h1>
             </div>
             <form method="" th:action="@{/Dashboard}">
                 <div class="input-group">

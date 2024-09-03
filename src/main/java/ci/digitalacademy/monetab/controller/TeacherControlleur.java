@@ -1,7 +1,9 @@
 package ci.digitalacademy.monetab.controller;
 
 import ci.digitalacademy.monetab.models.Teacher;
+import ci.digitalacademy.monetab.services.SchoolService;
 import ci.digitalacademy.monetab.services.TeacherService;
+import ci.digitalacademy.monetab.services.dto.SchoolDTO;
 import ci.digitalacademy.monetab.services.dto.TeacherDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,11 +24,13 @@ import java.util.Optional;
 public class TeacherControlleur {
 
     private final TeacherService teacherService;
+    private final SchoolService schoolService;
 
     @GetMapping
     public String showTeacher(Model model){
-
+        List<SchoolDTO> schoolDTOS = schoolService.findAll();
         List<TeacherDTO> teachers = teacherService.findAll();
+        model.addAttribute("schools",schoolDTOS);
         model.addAttribute("teachers",teachers);
 
         return "Teacher/list";
@@ -36,6 +40,8 @@ public class TeacherControlleur {
     public String showAjouterEleve(Model model){
 
         log.debug("Request to show add teacher forms");
+        List<SchoolDTO> schoolDTOS = schoolService.findAll();
+        model.addAttribute("schools",schoolDTOS);
         model.addAttribute("teachers", new Teacher());
         return "/Teacher/form";
     }
@@ -55,6 +61,8 @@ public class TeacherControlleur {
         log.debug("Request to show update teacher forms");
         Optional<TeacherDTO> teacher = teacherService.findOne(id);
         if (teacher.isPresent()){
+            List<SchoolDTO> schoolDTOS = schoolService.findAll();
+            model.addAttribute("schools",schoolDTOS);
             model.addAttribute("teachers" , teacher.get());
             return "Teacher/form";
         } else {

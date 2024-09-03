@@ -13,7 +13,7 @@
         <div class="logo">
             <h1>Bienvenu sur votre site de gestion d'école </h1>
         </div>
-        <form th:object="${appsetting}" th:action="@{/AppSetting}" method="post">
+        <form th:object="${appsetting}" th:action="@{/}" method="post">
             <div class="input-group">
                 <label for="smtpPassword">Smtp password</label>
                 <input th:field="*{smtpPassword}" type="password" id="smtpPassword" name="smtpPassword" required>

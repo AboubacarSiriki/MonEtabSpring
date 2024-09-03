@@ -2,7 +2,9 @@ package ci.digitalacademy.monetab.controller;
 
 import ci.digitalacademy.monetab.models.Teacher;
 import ci.digitalacademy.monetab.models.User;
+import ci.digitalacademy.monetab.services.SchoolService;
 import ci.digitalacademy.monetab.services.UserService;
+import ci.digitalacademy.monetab.services.dto.SchoolDTO;
 import ci.digitalacademy.monetab.services.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,11 +23,13 @@ import java.util.Optional;
 public class UserControlleur {
 
     private final UserService userService;
+    private final SchoolService schoolService;
 
     @GetMapping
     public String showUserPage(Model model){
-
+        List<SchoolDTO> schoolDTOS = schoolService.findAll();
         List<UserDTO> users = userService.findAll();
+        model.addAttribute("schools",schoolDTOS);
         model.addAttribute("users",users);
 
         return "/User/list";
@@ -35,6 +39,8 @@ public class UserControlleur {
     public String showAjouterEleve(Model model){
 
         log.debug("Request to show add user forms");
+        List<SchoolDTO> schoolDTOS = schoolService.findAll();
+        model.addAttribute("schools",schoolDTOS);
         model.addAttribute("users", new User());
         return "/User/form";
     }
@@ -63,6 +69,8 @@ public class UserControlleur {
         log.debug("Request to show update users forms");
         Optional<UserDTO> user = userService.findOne(id);
         if (user.isPresent()){
+            List<SchoolDTO> schoolDTOS = schoolService.findAll();
+            model.addAttribute("schools",schoolDTOS);
             model.addAttribute("users" , user.get());
             return "User/form";
         } else {

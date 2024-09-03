@@ -25,16 +25,16 @@ public class SchoolControlleur {
 
     @GetMapping
     public String AddScholl(Model model){
-
         model.addAttribute("schools", new School());
         return "School/addschool";
     }
 
     @PostMapping
-    public String saveSchool(SchoolDTO schoolDTO){
+    public String saveSchool(SchoolDTO schoolDTO, Model model){
 
         log.debug("Request to save teacher : {}",schoolDTO );
         schoolService.initSchool(schoolDTO);
         return "redirect:/index";
     }
+
 }

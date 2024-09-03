@@ -1,7 +1,5 @@
 package ci.digitalacademy.monetab.services.dto;
 
-import ci.digitalacademy.monetab.models.School;
-import ci.digitalacademy.monetab.models.User;
 import lombok.Getter;
 import lombok.Setter;
 
