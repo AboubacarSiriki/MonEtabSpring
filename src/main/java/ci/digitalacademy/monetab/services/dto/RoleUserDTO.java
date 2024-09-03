@@ -1,19 +1,17 @@
 package ci.digitalacademy.monetab.services.dto;
 
-import ci.digitalacademy.monetab.models.School;
 import ci.digitalacademy.monetab.models.User;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class SchoolDTO {
+public class RoleUserDTO {
 
     private Long id;
 
-    private String name;
+    private String role;
 
-    private String url_logo;
-
-    private AppSettingDTO appSettingDTO;
+    private User user;
 }

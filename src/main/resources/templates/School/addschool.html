@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="Fragments/fragment::head">
+
+</head>
+
+<body style="background-color: #555;">
+<div class="container">
+    <div class="login-box1">
+        <div class="logo">
+            <h1>Enregistrement d'école</h1>
+        </div>
+        <form th:object="${schools}" th:action="@{/AddSchool}" method="post">
+            <div class="input-group">
+                <label for="name">School name</label>
+                <input th:field="*{name}" type="text" id="name" name="name" required>
+            </div>
+            <div class="input-group">
+                <label for="logo">Add logo url</label>
+                <input th:field="*{url_logo}" type="url" id="logo" name="logo" required>
+            </div>
+            <button type="submit" class="login-btn">Save schoool</button>
+        </form>
+    </div>
+</div>
+</body>
+
+</html>

@@ -15,7 +15,8 @@
     <div class="content1">
         <div class="back-button">
             <h1 style="color:black;">Utilisateurs(<span th:text="${users.size()}"></span>)</h1>
-            <a th:href="@{/Users/show_add_user_form}"><i class="fas fa-arrow-left"></i>Nouveau Utilisateur</a>
+            <div class="search"><input type="search" placeholder="Rechercher"><button type="submit" class="buttonsearch">Rechercher</button></div>
+            <a th:href="@{/Users/show_add_user_form}"><i class="fas fa-plus"></i></i>Nouveau Utilisateur</a>
         </div>
         <table>
             <thead>

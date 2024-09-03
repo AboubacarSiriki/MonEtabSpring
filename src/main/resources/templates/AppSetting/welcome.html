@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="Fragments/fragment::head">
+
+</head>
+
+<body style="background-color: #555;">
+<div class="container">
+    <div class="login-box1">
+        <div class="logo">
+            <h1>Bienvenu sur votre site de gestion d'école </h1>
+        </div>
+        <form th:object="${appsetting}" th:action="@{/AppSetting}" method="post">
+            <div class="input-group">
+                <label for="smtpPassword">Smtp password</label>
+                <input th:field="*{smtpPassword}" type="password" id="smtpPassword" name="smtpPassword" required>
+            </div>
+            <div class="input-group">
+                <label for="smtpPort">Smtp port</label>
+                <input th:field="*{smtpPort}" type="number" id="smtpPort" name="smtpPort" required>
+            </div>
+            <div class="input-group">
+                <label for="smtpServer">Smtp Server</label>
+                <input th:field="*{smtpServer}" type="text" id="smtpServer" name="smtpServer" required>
+            </div>
+            <div class="input-group">
+                <label for="smtpUserName">Smtp Usr Name</label>
+                <input th:field="*{smtpUserName}" type="text" id="smtpUserName" name="smtpUserName" required>
+            </div>
+            <button type="submit" class="login-btn">Add App Setting</button>
+        </form>
+    </div>
+</div>
+</body>
+
+</html>

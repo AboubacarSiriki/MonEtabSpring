@@ -17,4 +17,6 @@ public interface UserService {
 
     void delecte(Long id);
 
+    List<UserDTO> initUser(List<UserDTO> users);
+
 }

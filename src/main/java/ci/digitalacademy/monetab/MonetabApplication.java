@@ -2,13 +2,19 @@ package ci.digitalacademy.monetab;
 
 import ci.digitalacademy.monetab.models.*;
 import ci.digitalacademy.monetab.services.*;
+import ci.digitalacademy.monetab.services.dto.AppSettingDTO;
+import ci.digitalacademy.monetab.services.dto.RoleUserDTO;
+import ci.digitalacademy.monetab.services.dto.SchoolDTO;
+import ci.digitalacademy.monetab.services.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.time.Instant;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @SpringBootApplication
@@ -28,6 +34,16 @@ public class MonetabApplication implements CommandLineRunner {
 
 	@Autowired
 	private FicheService ficheService;
+
+	@Autowired
+	private AppSettingService appSettingService;
+
+	@Autowired
+	private SchoolService schoolService;
+
+	@Autowired
+	private RoleUserService roleUserService;
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(MonetabApplication.class, args);
@@ -137,6 +153,62 @@ public class MonetabApplication implements CommandLineRunner {
 //
 //		List<FicheNote> ficheNotes = ficheService.findAll();
 //		System.out.println(ficheNotes);
+
+		RoleUserDTO role1 = new RoleUserDTO();
+		role1.setRole("admin");
+		RoleUserDTO role2 = new RoleUserDTO();
+		role2.setRole("staff");
+		RoleUserDTO role3 = new RoleUserDTO();
+		role3.setRole("other");
+
+		List<RoleUserDTO> roleUsersDTO = Arrays.asList(role1, role2, role3);
+		roleUsersDTO = roleUserService.initRoles(roleUsersDTO);
+
+//		AppSettingDTO appSettingDTO = new AppSettingDTO();
+//
+//		appSettingDTO.setSmtpServer("mail");
+//		appSettingDTO.setSmtpUserName("monEcole");
+//		appSettingDTO.setSmtpPassword("monEcole123");
+//		appSettingDTO.setSmtpPort(587);
+//
+//		AppSettingDTO settingDTO = appSettingService.initApp(appSettingDTO);
+//
+//		SchoolDTO schoolDTO = new SchoolDTO();
+//		schoolDTO.setName("upb");
+//		schoolDTO.setUrl_logo("https://cdn-icons-png.freepik.com/256/8074/8074788.png?semt=ais_hybrid");
+//		schoolDTO.setAppSettingDTO(settingDTO);
+//		schoolDTO = schoolService.initSchool(schoolDTO);
+
+		Set<RoleUserDTO> roleUserAnge = new HashSet<>();
+		roleUserAnge.add(roleUsersDTO.get(0));
+
+		Set<RoleUserDTO> roleUserStaff = new HashSet<>();
+		roleUserStaff.add(roleUsersDTO.get(1));
+
+		Set<RoleUserDTO> roleUserOther = new HashSet<>();
+		roleUserOther.add(roleUsersDTO.get(2));
+
+		UserDTO ange = new UserDTO();
+		ange.setSpeudo("angeB");
+		ange.setPassword("angeB123");
+		ange.setCreationdate(Instant.now());
+		ange.setRoleUserDTOS(roleUserAnge);
+
+		UserDTO staff = new UserDTO();
+		staff.setSpeudo("delmas");
+		staff.setPassword("delmas007");
+		staff.setCreationdate(Instant.now());
+
+		staff.setRoleUserDTOS(roleUserStaff);
+
+		UserDTO other = new UserDTO();
+		other.setSpeudo("bakus");
+		other.setPassword("bakus005");
+		other.setCreationdate(Instant.now());
+		other.setRoleUserDTOS(roleUserOther);
+
+		List<UserDTO> users = List.of(ange, staff, other);
+		userService.initUser(users);
 
 
 	}

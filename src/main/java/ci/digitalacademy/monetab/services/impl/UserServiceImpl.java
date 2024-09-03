@@ -29,7 +29,6 @@ public class UserServiceImpl implements UserService {
         log.debug("Resquest to save : {}",userDTO);
         User user = userMapper.toEntity(userDTO);
         user= userRepository.save(user);
-
         return  userMapper.toDto(user);
     }
 
@@ -84,5 +83,16 @@ public class UserServiceImpl implements UserService {
         userRepository.deleteById(id);
     }
 
+    @Override
+    public List<UserDTO> initUser(List<UserDTO> users) {
+        List<UserDTO > usersDto = findAll();
+        if (usersDto.isEmpty()){
+            users.forEach(user->{
+                save(user);
+            });
+        }
+        return findAll();
+
+    }
 
 }

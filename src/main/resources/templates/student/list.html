@@ -14,7 +14,8 @@
     <div class="content1">
         <div class="back-button">
             <h1 style="color:black;">Elèves(<span th:text="${students.size()}"></span>)</h1>
-            <a th:href="@{/Students/show_add_Student_form}"><i class="fas fa-arrow-left"></i>Nouveau élève</a>
+            <div class="search"><input type="search" placeholder="Rechercher"><button type="submit" class="buttonsearch">Rechercher</button></div>
+            <a th:href="@{/Students/show_add_Student_form}"><i class="fas fa-plus"></i>Nouveau élève</a>
         </div>
         <table>
             <thead>

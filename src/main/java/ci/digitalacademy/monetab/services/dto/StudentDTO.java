@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.Set;
 
 @Getter
@@ -29,4 +30,21 @@ public class StudentDTO extends PersonnDTO {
     private StudentCardsDTO studentCardsDTO;
 
     private PersonnDTO personnDTO;
+
+    public void setDatenaiss(LocalDate datenaiss) {
+        this.datenaiss = datenaiss;
+        // Mettre à jour l'âge lorsque la date de naissance est définie
+        this.age = calculateAge(datenaiss);
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    private Integer calculateAge(LocalDate datenaiss) {
+        if (datenaiss == null) {
+            return null;
+        }
+        return Period.between(datenaiss, LocalDate.now()).getYears();
+    }
 }

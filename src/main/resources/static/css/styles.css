@@ -27,6 +27,15 @@ body {
     width: 300px;
 }
 
+.login-box1 {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 70%;
+}
+
 .logo img {
     width: 50px;
     margin-bottom: 10px;
@@ -283,13 +292,55 @@ button {
 .form-actions .btn-save:hover {
     background-color: #218838;
 }
-.back-button{
+.back-button {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     width: 90%;
     height: 70px;
+}
+
+.back-button .search input[type="search"] {
+    width: 300px; /* Ajustez la largeur selon vos besoins */
+    height: 40px; /* Ajustez la hauteur selon vos besoins */
+    border: 2px solid blue; /* Bordure bleue */
+    padding: 5px; /* Pour un peu de padding à l'intérieur */
+    border-radius: 5px; /* Pour arrondir les coins */
+}
+
+.back-button .search .buttonsearch {
+    width: 100px; /* Ajustez la largeur selon vos besoins */
+    height: 40px; /* Ajustez la hauteur selon vos besoins */
+    background-color: blue; /* Couleur de fond bleue */
+    color: white; /* Couleur du texte en blanc */
+    border: none; /* Pas de bordure */
+    border-radius: 5px; /* Pour arrondir les coins */
+    cursor: pointer; /* Pour changer le curseur au survol */
+}
+
+.back-button .search .buttonsearch:hover {
+    background-color: darkblue; /* Couleur du bouton au survol */
+}
+
+.back-button a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px; /* Même hauteur que la barre de recherche */
+    padding: 0 15px; /* Ajout de padding pour un peu d'espace autour du texte */
+    background-color: black; /* Couleur de fond noire */
+    color: white; /* Couleur du texte en blanc */
+    text-decoration: none; /* Supprime la décoration de lien */
+    border-radius: 5px; /* Pour arrondir les coins */
+}
+
+.back-button a:hover {
+    background-color: darkgray; /* Couleur du bouton au survol */
+}
+
+.back-button a i {
+    margin-right: 5px; /* Espace entre l'icône et le texte */
 }
 
 .icon {
