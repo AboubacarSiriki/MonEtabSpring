@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -94,5 +95,19 @@ public class UserServiceImpl implements UserService {
         return findAll();
 
     }
+
+    @Override
+    public List<UserDTO> findByCreationdateLessThanAndRoleUsers(Instant creationdate, String role) {
+        List<User> users = userRepository.findByCreationdateLessThanAndRoleUsers_Role(creationdate, role);
+        return users.stream().map(user -> userMapper.toDto(user)).toList();
+    }
+
+    @Override
+    public Optional<UserDTO> findBySpeudo(String speudo) {
+        return userRepository.findBySpeudo(speudo).map(user ->
+                userMapper.toDto(user));
+    }
+
+
 
 }

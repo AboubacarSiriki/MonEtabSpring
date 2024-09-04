@@ -12,14 +12,14 @@
 </div>
 
     <div class="content1">
-        <form class="back-button">
+        <form class="back-button" role="search" method="get" th:action="@{/Teachers/search}">
             <h1 style="color:black;">Professeurs(<span th:text="${teachers.size()}"></span>)</h1>
-            <div class="search"><input type="search" placeholder="Rechercher">
-                <select  class="buttonsearch">
+            <div class="search"><input type="search"  th:value="${query}" name="query"  placeholder="RECHERCHE : (NOM , GENRE , MATIERE)">
+                <select  class="buttonsearch" name="gender"  th:value="${gender}">
                     <option disabled selected>Choix Sexe</option>
-                    <option>Homme</option>
-                    <option>Homme</option>
-                    <option>Autre</option>
+                    <option value="Homme" th:if="${gender == 'Homme'} ? 'selected':''">Homme</option>
+                    <option value="Femme" th:if="${gender == 'Femme'} ? 'selected':''">Femme</option>
+                    <option value="Autre" th:if="${gender == 'Autre'} ? 'selected':''">Autre</option>
                 </select>
                 <button type="submit" class="buttonsearch">Rechercher</button>
             </div>

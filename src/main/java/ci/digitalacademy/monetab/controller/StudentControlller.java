@@ -43,6 +43,7 @@ public class StudentControlller {
             return "/student/form";
         }
 
+        //Ajout student
         @PostMapping
         public String saveStudent(StudentDTO studentDTO){
 

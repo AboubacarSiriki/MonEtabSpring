@@ -28,12 +28,16 @@
         <div class="form-group gender">
             <label>Genre</label>
             <div>
-                <input th:field="*{genre}" type="radio" id="homme" name="sexe" value="M">
+                <input th:field="*{genre}" type="radio" id="homme" name="sexe" value="Homme">
                 <label for="homme">Homme</label>
             </div>
             <div>
-                <input th:field="*{genre}" type="radio" id="femme" name="sexe" value="F">
+                <input th:field="*{genre}" type="radio" id="femme" name="sexe" value="Femme">
                 <label for="femme">Femme</label>
+            </div>
+            <div>
+                <input th:field="*{genre}" type="radio" id="autre" name="sexe" value="Autre">
+                <label for="autre">Autre</label>
             </div>
         </div>
 

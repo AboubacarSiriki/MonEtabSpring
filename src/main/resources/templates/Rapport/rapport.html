@@ -22,18 +22,30 @@
         <div class="form-group">
             <label for="classe">Sélectionner une option</label>
             <select id="classe" name="classe">
-                <option value="6eme" disabled selected>Selectionnez une option</option>
-                <option value="6eme">Listes des élèves </option>
-                <option value="5eme">Listes des professeurs</option>
-                <option value="4eme">Listes des Utilisateurs</option>
+                <option value="" disabled selected>Selectionnez une option</option>
+                <option value="students">Listes des élèves</option>
+                <option value="teachers">Listes des professeurs</option>
+                <option value="users">Listes des Utilisateurs</option>
             </select>
         </div>
 
         <div class="form-actions">
-            <button class="btn-cancel" onclick="confirmCancel()">Générer en format pdf</button>
-            <button class="btn-save">Générer en format Excel</button>
+            <button class="btn-cancel" onclick="downloadFile('pdf')">Générer en format PDF</button>
+            <button class="btn-save" onclick="downloadFile('excel')">Générer en format Excel</button>
         </div>
+
     </div>
 </div>
+<script>
+    function downloadFile(format) {
+        var selectedOption = document.getElementById('classe').value;
+        if (selectedOption) {
+            window.location.href = '/Rapport/download?option=' + selectedOption + '&format=' + format;
+        } else {
+            alert("Veuillez sélectionner une option");
+        }
+    }
+</script>
+
 </body>
 </html>

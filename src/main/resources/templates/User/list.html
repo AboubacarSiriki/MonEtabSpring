@@ -13,11 +13,18 @@
 </div>
 
     <div class="content1">
-        <div class="back-button">
+        <form class="back-button" role="search" th:action="@{/Users/search}">
             <h1 style="color:black;">Utilisateurs(<span th:text="${users.size()}"></span>)</h1>
-            <div class="search"><input type="search" placeholder="Rechercher"><button type="submit" class="buttonsearch">Rechercher</button></div>
+            <div class="search"><input class="buttonsearch" name="date" th:value="${date}" type="date" placeholder="RECHERCHE : (DATE DE CREATION)" aria-label="Search">
+                <select  class="buttonsearch"  name="role">
+                    <option disabled selected>Choisir Role</option>
+                    <th:block th:each="role:${roles}" >
+                        <option th:value="${role.getRole()}" th:text="${role.getRole()}" ></option>
+                    </th:block>
+                </select>
+                <button type="submit" class="buttonsearch">Rechercher</button></div>
             <a th:href="@{/Users/show_add_user_form}"><i class="fas fa-plus"></i></i>Nouveau Utilisateur</a>
-        </div>
+        </form>
         <table>
             <thead>
                 <tr>

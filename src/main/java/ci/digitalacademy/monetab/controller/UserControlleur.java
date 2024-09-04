@@ -2,6 +2,7 @@ package ci.digitalacademy.monetab.controller;
 
 import ci.digitalacademy.monetab.models.Teacher;
 import ci.digitalacademy.monetab.models.User;
+import ci.digitalacademy.monetab.services.RoleUserService;
 import ci.digitalacademy.monetab.services.SchoolService;
 import ci.digitalacademy.monetab.services.UserService;
 import ci.digitalacademy.monetab.services.dto.SchoolDTO;
@@ -13,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +27,7 @@ public class UserControlleur {
 
     private final UserService userService;
     private final SchoolService schoolService;
+    private final RoleUserService roleUserService;
 
     @GetMapping
     public String showUserPage(Model model){
@@ -85,4 +89,16 @@ public class UserControlleur {
         userService.delecte(id);
         return "redirect:/Users";
     }
+
+    @GetMapping("/search")
+    public String searchTeachers(@RequestParam LocalDate date, @RequestParam String role, Model model) {
+        List<UserDTO> users = userService.findByCreationdateLessThanAndRoleUsers(Instant.from(date.atStartOfDay(ZoneOffset.systemDefault())), role);
+        model.addAttribute("users", users);
+        model.addAttribute("date", date);
+        model.addAttribute("role", role);
+        model.addAttribute("roles", roleUserService.findAll());
+
+        return "User/list";
+    }
+
 }

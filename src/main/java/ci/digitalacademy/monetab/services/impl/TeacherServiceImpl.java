@@ -3,6 +3,7 @@ package ci.digitalacademy.monetab.services.impl;
 import ci.digitalacademy.monetab.models.Teacher;
 import ci.digitalacademy.monetab.repositories.TeacherRepository;
 import ci.digitalacademy.monetab.services.TeacherService;
+import ci.digitalacademy.monetab.services.dto.StudentDTO;
 import ci.digitalacademy.monetab.services.dto.TeacherDTO;
 import ci.digitalacademy.monetab.services.mapper.TeacherMapper;
 import lombok.RequiredArgsConstructor;
@@ -57,4 +58,11 @@ public class TeacherServiceImpl implements TeacherService {
 
         teacherRepository.deleteById(id);
     }
+
+    @Override
+    public List<TeacherDTO> findByNomOrMatiereAndGenre(String query, String genre) {
+        List<Teacher> teachers = teacherRepository.findByNomOrMatiereAndGenre(query , query , genre);
+        return teachers.stream().map(teacher -> teacherMapper.toDto(teacher)).toList();
+    }
+
 }

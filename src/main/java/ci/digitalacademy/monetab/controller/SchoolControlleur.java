@@ -2,7 +2,9 @@ package ci.digitalacademy.monetab.controller;
 
 import ci.digitalacademy.monetab.models.School;
 import ci.digitalacademy.monetab.models.Student;
+import ci.digitalacademy.monetab.services.AppSettingService;
 import ci.digitalacademy.monetab.services.SchoolService;
+import ci.digitalacademy.monetab.services.dto.AppSettingDTO;
 import ci.digitalacademy.monetab.services.dto.SchoolDTO;
 import ci.digitalacademy.monetab.services.dto.StudentDTO;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +24,7 @@ import java.util.List;
 public class SchoolControlleur {
 
     private final SchoolService schoolService;
+    private final AppSettingService appSettingService;
 
     @GetMapping
     public String AddScholl(Model model){
@@ -33,6 +36,9 @@ public class SchoolControlleur {
     public String saveSchool(SchoolDTO schoolDTO, Model model){
 
         log.debug("Request to save teacher : {}",schoolDTO );
+        AppSettingDTO appSettingDTO = appSettingService.findAll().get(0);
+        schoolDTO.setAppSettingDTO(appSettingDTO);
+        schoolService.save(schoolDTO);
         schoolService.initSchool(schoolDTO);
         return "redirect:/index";
     }
