@@ -2,6 +2,7 @@ package ci.digitalacademy.monetab.controller;
 
 import ci.digitalacademy.monetab.models.Teacher;
 import ci.digitalacademy.monetab.models.User;
+import ci.digitalacademy.monetab.repositories.UserRepository;
 import ci.digitalacademy.monetab.services.RoleUserService;
 import ci.digitalacademy.monetab.services.SchoolService;
 import ci.digitalacademy.monetab.services.UserService;
@@ -12,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.Instant;
 import java.time.LocalDate;
@@ -28,6 +30,7 @@ public class UserControlleur {
     private final UserService userService;
     private final SchoolService schoolService;
     private final RoleUserService roleUserService;
+    private final UserRepository userRepository;
 
     @GetMapping
     public String showUserPage(Model model){
@@ -100,5 +103,43 @@ public class UserControlleur {
 
         return "User/list";
     }
+
+    @PostMapping("/updateStatus/{id}")
+    public String updateUserStatus(@PathVariable Long id, @RequestParam("status") boolean status, RedirectAttributes redirectAttributes) {
+        // Récupérer l'utilisateur par son id
+        Optional<UserDTO> userOptional = userService.findOne(id);
+
+        if (userOptional.isPresent()) {
+            UserDTO userDTO = userOptional.get();
+            userDTO.setActive(status);  // Mettre à jour le statut
+
+            // Sauvegarder les changements
+            userService.save(userDTO);
+            redirectAttributes.addFlashAttribute("message", "Le statut de l'utilisateur a été mis à jour.");
+        } else {
+            redirectAttributes.addFlashAttribute("error", "Utilisateur non trouvé.");
+        }
+
+        return "redirect:/Users";
+    }
+
+    @GetMapping("/Users/deactivate/{id}")
+    public String deactivateUser(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+        Optional<User> userOptional = userRepository.findById(id);
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            user.setActive(false);  // Désactiver l'utilisateur
+            userRepository.save(user);
+            redirectAttributes.addFlashAttribute("message", "L'utilisateur a été désactivé avec succès.");
+        } else {
+            redirectAttributes.addFlashAttribute("error", "Utilisateur non trouvé.");
+        }
+
+        return "redirect:/Users";
+    }
+
+
+
 
 }

@@ -24,6 +24,9 @@ public class User {
     @Column(name ="password",nullable = false)
     private String password;
 
+    @Column(name = "active", nullable = false)
+    private boolean active;
+
     @Column(name = "create_date",nullable = false)
     private Instant creationdate;
 

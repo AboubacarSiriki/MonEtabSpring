@@ -76,13 +76,13 @@ public class RapportController {
             List<StudentDTO> studentDTOS = studentService.findAll();
             document.add(new Paragraph("Listes des élèves"));
             for (StudentDTO student : studentDTOS) {
-                document.add(new Paragraph(student.getNom() + " - " + student.getEmail()));
+                document.add(new Paragraph(student.getNom() + " - " + student.getPrenom() + " - " + student.getTelephone() + " - " + student.getEmail()));
             }
         } else if ("teachers".equalsIgnoreCase(option)) {
             List<TeacherDTO> teacherDTOS = teacherService.findAll();
             document.add(new Paragraph("Listes des professeurs"));
             for (TeacherDTO teacher : teacherDTOS) {
-                document.add(new Paragraph(teacher.getNom() + " - " + teacher.getEmail()));
+                document.add(new Paragraph(teacher.getNom() + " - " + teacher.getPrenom() + " - " + teacher.getTelephone() + " - " + teacher.getEmail()));
             }
         } else if ("users".equalsIgnoreCase(option)) {
             List<UserDTO> userDTOS = userService.findAll();

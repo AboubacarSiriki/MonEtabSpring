@@ -40,6 +40,12 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    public TeacherDTO update(TeacherDTO teacherDTO, Long id) {
+        teacherDTO.setId(id);
+        return update(teacherDTO);
+    }
+
+    @Override
     public Optional<TeacherDTO> findOne(Long id) {
         return teacherRepository.findById(id).map(teacher -> {
             return teacherMapper.toDto(teacher);

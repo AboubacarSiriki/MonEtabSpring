@@ -21,6 +21,8 @@ public class UserDTO {
 
     private String password;
 
+    private boolean active;
+
     private Instant creationdate;
 
     private AddressDTO adresseDTO;

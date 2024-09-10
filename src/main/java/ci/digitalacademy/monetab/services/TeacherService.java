@@ -13,6 +13,8 @@ public interface TeacherService {
 
     TeacherDTO update(TeacherDTO teacherDTO);
 
+    TeacherDTO update(TeacherDTO teacherDTO, Long id);
+
     Optional<TeacherDTO> findOne(Long id);
 
     List<TeacherDTO> findAll();
